@@ -14,22 +14,18 @@ input = input.toString().split('\n');
 // 12 red cubes,
 // 13 green cubes,
 // 14 blue cubes
-
-let sum = 0;
-
-input.forEach((line) => {
-  let validGame = true;
-  const game = parseInt(line.split(' ')[1].split(':')[0]);
-  //   console.log('Game: ', game);
-
-  const cubeMax = {
+let sum1 = 0;
+const cubeMax = {
     red: 12,
     green: 13,
     blue: 14,
   };
 
+input.forEach((line) => {
+  let validGame = true;
+  const game = parseInt(line.split(' ')[1].split(':')[0]);
+
   const games = line.split(':')[1].split(';');
-  //   console.log(games);
 
   games.forEach((g) => {
     const pull = g.split(',');
@@ -39,13 +35,46 @@ input.forEach((line) => {
       color = p.split(' ')[2];
 
       if (count > cubeMax[color]) {
-        // console.log('too many dice!');
         validGame = false;
       }
     });
   });
 
-  if (validGame) sum += game;
+  if (validGame) sum1 += game;
 });
 
-console.log(sum);
+console.log(sum1); // 2006
+
+
+// Part 2
+let sum2 = 0;
+input.forEach((line) => {
+  const game = parseInt(line.split(' ')[1].split(':')[0]);
+
+  const cubes = {
+    red: 0,
+    green: 0,
+    blue: 0,
+  };
+
+  const games = line.split(':')[1].split(';');
+
+  games.forEach((g) => {
+    const pull = g.split(',');
+
+    pull.forEach((p) => {
+      count = parseInt(p.split(' ')[1]);
+      color = p.split(' ')[2];
+
+      if (count > cubes[color]) {
+        cubes[color] = count;
+      }
+    });
+  });
+
+  const power = cubes['red'] * cubes['green'] * cubes['blue'];
+
+  sum2 += power
+});
+
+console.log(sum2) // 84911
