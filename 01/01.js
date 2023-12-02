@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-let input = fs.readFileSync('input.txt', (err, data) => {
+let input = fs.readFileSync(__dirname + 'input.txt', (err, data) => {
   if (err) {
     throw err;
   }
