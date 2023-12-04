@@ -183,7 +183,7 @@ const part2 = () => {
     }
   }
 
-  console.log(sum)
+  console.log(sum);
 };
 
 part1(); // 550934
